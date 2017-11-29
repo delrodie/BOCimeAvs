@@ -89,12 +89,12 @@
 							<a class="rm-toggle rm-button rm-nojs" href="#">Menu</a>
 							<nav class="rm-nav rm-nojs rm-lighten">
 								<ul>
-									<li class="active"><a href="#">Accueil</a></li>
-									<li><a href="#">Actualités</a></li>
+									<li class="active"><a href="{{ path('homepage')}}">Accueil</a></li>
+									<li><a href="{{ path('avs_actualites')}}">Actualités</a></li>
 									<li><a href="#">Tarifs </a></li>
-									<li><a href="#">Services</a></li>
+									<li><a href="{{ path('homepage')}}#avs-services">Services</a></li>
 									<li><a href="#">Galerie</a></li>
-									<li><a href="#">Contact </a></li>
+									<li><a href="#avs-contact">Contact </a></li>
 								</ul>
 							</nav>
 						</div>
@@ -126,7 +126,7 @@
 							<div class="flogo"><img src="ressources/images/logo-blanc.png" alt="" /></div>
 						</div>
 					</div><br>
-					<div class="row">
+					<div class="row" id="avs-contact">
 						<div class="col-md-3 col-sm-6">
 							<div class="widget">
 								<h5 class="f-title">Adjamé</h5>

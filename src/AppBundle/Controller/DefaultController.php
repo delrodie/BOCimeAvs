@@ -13,9 +13,53 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
+        $em = $this->getDoctrine()->getManager();
+
+        $actualites = $em->getRepository('AppBundle:Post')
+                          ->findBy(
+                                  array('statut' => 1),
+                                  array('publieLe'  => 'DESC'),
+                                  $limit = 3,
+                                  $offset = 0
+                        );
+        //$locale = $request->getLocale(); dump($locale);die();
+
         return $this->render('frontoffice/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'actualites' => $actualites,
         ]);
     }
+
+    /**
+     * @Route("/actualites/{slug}", name="actualite_page")
+     */
+    public function actualiteAction(Request $request, $slug)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $post = $em->getRepository('AppBundle:Post')->findOneBy(array('slug' => $slug));
+        //dump($post);die();
+
+        return $this->render('frontoffice/page.html.twig', [
+            'post'  => $post,
+        ]);
+    }
+
+    /**
+     * @Route("/actualites/", name="avs_actualites")
+     */
+     public function listeactualiteAction(Request $request)
+     {
+         $em = $this->getDoctrine()->getManager();
+
+         $actualites = $em->getRepository('AppBundle:Post')
+                           ->findBy(
+                                   array('statut' => 1),
+                                   array('publieLe'  => 'DESC')
+                         );
+         //$locale = $request->getLocale(); dump($locale);die();
+
+         return $this->render('frontoffice/actualites.html.twig', [
+             'actualites' => $actualites,
+         ]);
+     }
 }
