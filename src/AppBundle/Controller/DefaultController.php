@@ -62,4 +62,12 @@ class DefaultController extends Controller
              'actualites' => $actualites,
          ]);
      }
+
+     /**
+      * @Route("/admin/", name="admin")
+      */
+     public function adminAction()
+     {
+        return $this->render('default/index.html.twig');
+     }
 }
