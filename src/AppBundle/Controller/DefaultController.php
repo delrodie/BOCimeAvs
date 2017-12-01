@@ -70,4 +70,22 @@ class DefaultController extends Controller
      {
         return $this->render('default/index.html.twig');
      }
+
+     /**
+      * @Route("/tarifs/", name="avs_tarif")
+      */
+     public function tarifAction(Request $request)
+     {
+        $em = $this->getDoctrine()->getManager();
+
+        $tarifs = $em->getRepository('AppBundle:Tarif')
+                      ->findBy(
+                          array('statut'  => 1),
+                          array('depart'  => 'ASC')
+                      );
+
+        return $this->render('frontoffice/tarifs.html.twig', [
+                          'tarifs' => $tarifs,
+                      ]);
+     }
 }
