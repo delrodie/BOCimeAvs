@@ -33,6 +33,7 @@ framework:
     assets: ~
     php_errors:
         log: true
+    default_locale: fr
 
 # Twig Configuration
 twig:
@@ -109,6 +110,15 @@ vich_uploader:
             delete_on_update:   true
             delete_on_remove:   true
 
+        post_image:
+            uri_prefix:         /uploads/actualites
+            upload_destination: '%kernel.root_dir%/../web/uploads/actualites'
+            namer: vich_uploader.namer_uniqid
+
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
 liip_imagine:
     resolvers:
         default:
@@ -139,6 +149,18 @@ liip_imagine:
                 relative_resize:
                     widen: 150
 
+        actualite:
+            quality: 100
+            #filters:
+            #    relative_resize:
+            #        widen: 500
+
+        actualiteIntro:
+            quality: 100
+            filters:
+                thumbnail: { size: [360, 194], mode: inset }
+                background: { size: [360, 194], position: center, color: '#ffffff'}
+
 ivory_ck_editor:
     default_config: default
     configs:
@@ -149,3 +171,14 @@ ivory_ck_editor:
         filebrowsers:
             - filebrowserImageBrowse
             - filebrowserImageUpload
+
+services:
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+            - { name: twig.extension }
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
