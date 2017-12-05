@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tarif</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tarif.id }}</td>
+            </tr>
+            <tr>
+                <th>Depart</th>
+                <td>{{ tarif.depart }}</td>
+            </tr>
+            <tr>
+                <th>Arrivee</th>
+                <td>{{ tarif.arrivee }}</td>
+            </tr>
+            <tr>
+                <th>Montant</th>
+                <td>{{ tarif.montant }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{% if tarif.statut %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ tarif.slug }}</td>
+            </tr>
+            <tr>
+                <th>Publiepar</th>
+                <td>{{ tarif.publiePar }}</td>
+            </tr>
+            <tr>
+                <th>Modifiepar</th>
+                <td>{{ tarif.modifiePar }}</td>
+            </tr>
+            <tr>
+                <th>Publiele</th>
+                <td>{{ tarif.publieLe }}</td>
+            </tr>
+            <tr>
+                <th>Modifiele</th>
+                <td>{{ tarif.modifieLe }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_tarif_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_tarif_edit', { 'id': tarif.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

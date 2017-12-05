@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section id="lp-post">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-md-8">
+        <div class="lp-post text-center">
+          <div class="p-header">
+            <h1 class="title">ACTUALITES AVS</h1>
+            <hr />
+
+          </div>
+          <div class="row">
+            {% for actualite in actualites %}
+            <div class="col-md-6 col-sm-6">
+              <div class="lp-content">
+                <div class="contain">
+                  <div class="lp-img">
+                    <img src=<img src="{{ asset('uploads/actualites/'~ actualite.imageName) | imagine_filter('actualiteIntro') }}" class="img-responsive" alt="{{ actualite.titre }}">
+                  </div>
+                  <div class="textbox">
+                    <a href="{{ path('actualite_page', {'slug': actualite.slug}) }}"><i class="fa fa-search"></i></a>
+                  </div>
+                </div>
+                <div class="lp-txt">
+                  <time datetime="2015-10-26" class="icon">
+                    <span>{{ actualite.publieLe|date('d')}}</span>
+                    <strong>{{ actualite.publieLe|date('M')}}</strong>
+                  </time>
+                  <div class="lp-text">
+                    <h3><a href="{{ path('actualite_page', {'slug': actualite.slug}) }}">{{ actualite.titre }}</a></h3>
+                    <span> <a href="{{ path('actualite_page', {'slug': actualite.slug}) }}">{{ actualite.publiePar|title }}</a> </span>
+                    <p>{{ actualite.resume|raw }},.[...]</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-4 hidden-xs">
+        <div class="blog-widget" style="margin-top: 100px;">
+          <div class="facebook">
+
+                  <div class="fb-page" data-href="https://web.facebook.com/www.avstransports.ci/" data-height="900" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+                      <div class="fb-xfbml-parse-ignore">
+                          <blockquote cite="https://web.facebook.com/www.avstransports.ci/">
+                              <a href="https://web.facebook.com/www.avstransports.ci/">TRANSPORTS AVS</a>
+                          </blockquote>
+                      </div>
+                  </div>
+
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
